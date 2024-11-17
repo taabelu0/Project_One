@@ -55,6 +55,7 @@ struct ContentView: View {
             }
             .listRowSpacing(5)
             .navigationTitle("Articles")
+        
             .refreshable {
                 await refresh()
             }
@@ -87,6 +88,15 @@ struct ArticleDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
+                
+                Text(article.title)
+                    .font(.title)
+                    .bold()
+                
+                Text("By \(article.author ?? "Unknown")")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
                 AsyncImage(url: makeImageURL(from: article)) { image in
                     image
                         .resizable()
@@ -97,32 +107,43 @@ struct ArticleDetailView: View {
                     Rectangle()
                         .fill(Color.primary.opacity(0.1))
                         .frame(height: 200)
+                }.cornerRadius(10)
+                
+                HStack {
+                    Text(article.source.name)
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                    
+                    Spacer()
+                    
+                    Text(article.publishedAt, style: .date)
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        
                 }
                 
-                Text(article.title)
-                    .font(.title)
-                    .bold()
-                
-                // Optional Binding für den Autor
-                Text("By \(article.author ?? "Unknown")")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                
-                Text(article.publishedAt, style: .date)
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
-                
-                Text(article.description ?? "Unknown") // Assuming 'content' is a field in your Article model
+                Text(article.description ?? "Unknown")
                     .font(.body)
-                
-                if let url = URL(string: article.url) {
-                            Link("Visit Apple", destination: url)
-                        } else {
-                            Text("Invalid URL")
-                        }
             }
             .padding()
         }
+        .navigationTitle("Article")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+            Button(action: {
+                openWebsite(articleURL: article.url)
+            }) {
+                Image(systemName: "safari")
+                }
+            }
+        }
+    }
+}
+
+func openWebsite(articleURL: String) {
+    if let url = URL(string: articleURL) {
+            UIApplication.shared.open(url)
     }
 }
 
