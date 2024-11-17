@@ -11,42 +11,60 @@ struct ContentView: View {
     @State private var articles = [Article]()
     
     var body: some View {
-        List(articles) { article in
-            HStack {
-                AsyncImage(url: makeImageURL(from: article)) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 100, height: 150)
-                        .clipped()
-                } placeholder: {
-                    Rectangle()
-                        .fill(Color.primary.opacity(0.1))
-                        .frame(width: 100, height: 150)
+        NavigationView {
+            List(articles) { article in
+                NavigationLink(
+                    destination: ArticleDetailView(article: article)) {
+                    HStack(spacing: 10) { // Spacing für Abstand zwischen Bild und Text
+                        AsyncImage(url: makeImageURL(from: article)) { image in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 100, height: 150)
+                                .clipped()
+                        } placeholder: {
+                            Rectangle()
+                                .fill(Color.primary.opacity(0.1))
+                                .frame(width: 100, height: 150)
+                        }
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(article.title)
+                                .font(.headline)
+                                .lineLimit(2)
+                            
+                            Text("By \(article.author ?? "Unknown")")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                            
+                            Text(article.publishedAt, style: .date)
+                                .font(.footnote)
+                                .foregroundColor(.secondary)
+                        }
+                    }.padding(.init(
+                        top: 0,
+                        leading: 0,
+                        bottom: 0,
+                        trailing: 10))
                 }
-                
-                VStack(alignment: .leading) {
-                    Text(article.title)
-                        .font(.headline)
-                        .lineLimit(2)
-                    if let author = article.author {
-                        Text("By \(author)")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
-                    Text(article.publishedAt, style: .date)
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                }
+                .listRowInsets(.init(
+                    top:0,
+                    leading: 0,
+                    bottom: 0,
+                    trailing: 5))
             }
+            .listRowSpacing(5)
+            .navigationTitle("Articles")
+            .refreshable {
+                await refresh()
+            }
+            .task {
+                await refresh()
+            }
+            .animation(.default, value: articles)
         }
-        .refreshable {
-            await refresh()
-        }
-        .task {
-            await refresh()
-        }
-        .animation(.default, value: articles)
+        .padding(0)
+       
     }
     
     func refresh() async {
@@ -61,6 +79,54 @@ struct ContentView: View {
         }
     }
 }
+
+
+struct ArticleDetailView: View {
+    var article: Article
+    
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 16) {
+                AsyncImage(url: makeImageURL(from: article)) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: 200)
+                        .clipped()
+                } placeholder: {
+                    Rectangle()
+                        .fill(Color.primary.opacity(0.1))
+                        .frame(height: 200)
+                }
+                
+                Text(article.title)
+                    .font(.title)
+                    .bold()
+                
+                // Optional Binding für den Autor
+                Text("By \(article.author ?? "Unknown")")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                
+                Text(article.publishedAt, style: .date)
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+                
+                Text(article.description ?? "Unknown") // Assuming 'content' is a field in your Article model
+                    .font(.body)
+                
+                if let url = URL(string: article.url) {
+                            Link("Visit Apple", destination: url)
+                        } else {
+                            Text("Invalid URL")
+                        }
+            }
+            .padding()
+        }
+    }
+}
+
+
 
 func downloadArticles() async throws -> [Article] {
     let apiKey = "bc249c07a5434976a849acb7b9226767"
@@ -111,6 +177,8 @@ struct Article: Identifiable, Equatable, Decodable {
         let name: String
     }
 }
+
+
 
 #Preview {
     ContentView()
