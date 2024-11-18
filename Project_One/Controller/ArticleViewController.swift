@@ -14,16 +14,18 @@ class ArticleViewController: ObservableObject {
     @Published var errorMessage: String? = nil
     
     func loadArticles() async {
-        self.isLoading = true
-        self.errorMessage = nil
-        
         do {
-            self.articles = try await downloadArticles()
+            let newArticles = try await downloadArticles()
+            DispatchQueue.main.async {
+                self.articles = newArticles
+            }
+        } catch let urlError as URLError {
+            print("URL Error: \(urlError)")
+        } catch let decodingError as DecodingError {
+            print("Decoding Error: \(decodingError.localizedDescription): \(decodingError)")
         } catch {
-            self.errorMessage = "Error loading articles: \(error.localizedDescription)"
+            print("An unexpected error occurred: " + error.localizedDescription)
         }
-        
-        self.isLoading = false
     }
     
     func refreshArticles() async {
