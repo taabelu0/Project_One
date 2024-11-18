@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8264CDBD2CEAB2720040D7AF /* ArticleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264CDBC2CEAB2650040D7AF /* ArticleDetailView.swift */; };
+		8264CDBF2CEAB2A50040D7AF /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264CDBE2CEAB2A10040D7AF /* Article.swift */; };
+		8264CDC32CEAB2D90040D7AF /* NewsAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264CDC22CEAB2D10040D7AF /* NewsAPIResponse.swift */; };
+		8264CDC52CEAB47A0040D7AF /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264CDC42CEAB4740040D7AF /* APICaller.swift */; };
+		8264CDC72CEAB6460040D7AF /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264CDC62CEAB63B0040D7AF /* ArticleViewController.swift */; };
+		8264CDC92CEABAD10040D7AF /* ArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8264CDC82CEABACA0040D7AF /* ArticleListView.swift */; };
 		E7066F312CBC41AE0034B8F1 /* Project_OneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7066F302CBC41AE0034B8F1 /* Project_OneApp.swift */; };
 		E7066F332CBC41AE0034B8F1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7066F322CBC41AE0034B8F1 /* ContentView.swift */; };
 		E7066F352CBC41B00034B8F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7066F342CBC41B00034B8F1 /* Assets.xcassets */; };
@@ -34,6 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8264CDBC2CEAB2650040D7AF /* ArticleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailView.swift; sourceTree = "<group>"; };
+		8264CDBE2CEAB2A10040D7AF /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		8264CDC22CEAB2D10040D7AF /* NewsAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAPIResponse.swift; sourceTree = "<group>"; };
+		8264CDC42CEAB4740040D7AF /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		8264CDC62CEAB63B0040D7AF /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
+		8264CDC82CEABACA0040D7AF /* ArticleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleListView.swift; sourceTree = "<group>"; };
 		E7066F2D2CBC41AE0034B8F1 /* Project_One.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Project_One.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7066F302CBC41AE0034B8F1 /* Project_OneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_OneApp.swift; sourceTree = "<group>"; };
 		E7066F322CBC41AE0034B8F1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +83,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8264CDB92CEAB2460040D7AF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8264CDC42CEAB4740040D7AF /* APICaller.swift */,
+				8264CDC22CEAB2D10040D7AF /* NewsAPIResponse.swift */,
+				8264CDBE2CEAB2A10040D7AF /* Article.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8264CDBA2CEAB2500040D7AF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8264CDC62CEAB63B0040D7AF /* ArticleViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8264CDBB2CEAB25A0040D7AF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8264CDC82CEABACA0040D7AF /* ArticleListView.swift */,
+				8264CDBC2CEAB2650040D7AF /* ArticleDetailView.swift */,
+				E7066F322CBC41AE0034B8F1 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E7066F242CBC41AE0034B8F1 = {
 			isa = PBXGroup;
 			children = (
@@ -95,7 +135,9 @@
 			isa = PBXGroup;
 			children = (
 				E7066F302CBC41AE0034B8F1 /* Project_OneApp.swift */,
-				E7066F322CBC41AE0034B8F1 /* ContentView.swift */,
+				8264CDB92CEAB2460040D7AF /* Model */,
+				8264CDBA2CEAB2500040D7AF /* Controller */,
+				8264CDBB2CEAB25A0040D7AF /* View */,
 				E7066F342CBC41B00034B8F1 /* Assets.xcassets */,
 				E7066F362CBC41B00034B8F1 /* Preview Content */,
 			);
@@ -257,7 +299,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8264CDBF2CEAB2A50040D7AF /* Article.swift in Sources */,
+				8264CDC52CEAB47A0040D7AF /* APICaller.swift in Sources */,
+				8264CDC72CEAB6460040D7AF /* ArticleViewController.swift in Sources */,
+				8264CDC92CEABAD10040D7AF /* ArticleListView.swift in Sources */,
+				8264CDBD2CEAB2720040D7AF /* ArticleDetailView.swift in Sources */,
 				E7066F332CBC41AE0034B8F1 /* ContentView.swift in Sources */,
+				8264CDC32CEAB2D90040D7AF /* NewsAPIResponse.swift in Sources */,
 				E7066F312CBC41AE0034B8F1 /* Project_OneApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +470,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Project_One/Preview Content\"";
+				DEVELOPMENT_TEAM = FSS724R38Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -434,7 +483,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "test.Project-One";
+				PRODUCT_BUNDLE_IDENTIFIER = "Project-One";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -450,6 +499,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Project_One/Preview Content\"";
+				DEVELOPMENT_TEAM = FSS724R38Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -462,7 +512,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "test.Project-One";
+				PRODUCT_BUNDLE_IDENTIFIER = "Project-One";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
