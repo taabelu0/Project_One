@@ -53,6 +53,10 @@ struct ArticleListView: View {
             }
             .animation(.default, value: viewController.articles)
         }
+        if (viewController.articles.isEmpty) {
+            ProgressView()
+                .controlSize(.large)
+        }
     }
 }
 
