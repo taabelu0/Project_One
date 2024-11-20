@@ -51,9 +51,6 @@ struct ArticleListView: View {
             .refreshable {
                 await viewController.refreshArticles()
             }
-            .task {
-                await viewController.refreshArticles()
-            }
             .animation(.default, value: viewController.articles)
         }
     }

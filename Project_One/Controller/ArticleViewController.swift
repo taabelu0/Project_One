@@ -29,8 +29,8 @@ class ArticleViewController: ObservableObject {
     }
     
     func refreshArticles() async {
-            await loadArticles()
-        }
+        await loadArticles()
+    }
     
     /*
     func refresh() async {

@@ -12,7 +12,10 @@ struct ContentView: View {
     
     var body: some View {
         ArticleListView(viewController: viewController)
-        .padding(0)
+            .padding(0)
+            .task {
+                  await viewController.loadArticles()
+            }
     }
 }
 
