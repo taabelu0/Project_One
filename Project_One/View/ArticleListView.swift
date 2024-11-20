@@ -33,7 +33,7 @@ struct ArticleListView: View {
                                     .font(.headline)
                                     .lineLimit(2)
                         
-                                Text("By \(article.author ?? "Unknown")")
+                                Text("By \(article.author?.isEmpty == false ? article.author! : "Unknown Author")")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                         

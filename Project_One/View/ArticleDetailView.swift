@@ -18,7 +18,7 @@ struct ArticleDetailView: View {
                     .font(.title)
                     .bold()
                 
-                Text("By \(article.author ?? "Unknown")")
+                Text("By \(article.author?.isEmpty == false ? article.author! : "Unknown Author")")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 
@@ -47,8 +47,11 @@ struct ArticleDetailView: View {
                         .foregroundColor(.secondary)
                 }
                 
-                Text(article.description ?? "Unknown")
+                Text(article.description ?? "")
                     .font(.body)
+                Spacer()
+                Link("See more here.", destination: URL(string: article.url)!)
+
                 
             }
             .padding()
