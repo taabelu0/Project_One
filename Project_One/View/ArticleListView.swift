@@ -52,7 +52,7 @@ struct ArticleListView: View {
                     .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 10))
             }
             .listRowSpacing(5)
-            .navigationTitle("Articles")
+            .navigationTitle("New News Articles")
             .refreshable {
                 await viewController.refreshArticles()
             }
